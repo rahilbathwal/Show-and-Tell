@@ -9,7 +9,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera access is needed to take a picture to detect object</string>
+	<string>Camera access is needed to take a photo of object being detected</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -37,6 +37,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo library access is needed to choose a picture to detect object</string>
+	<string>Photo libary access needed to select photo of object being detected</string>
 </dict>
 </plist>
