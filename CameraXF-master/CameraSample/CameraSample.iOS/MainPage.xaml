@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CameraSample.iOS.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CameraSample.iOS.MainPage" BackgroundColor="#53687e">
 	<ContentPage.Content>
         <StackLayout>
         <Grid>
@@ -23,13 +23,13 @@
 
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="English_title" Text="English" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="3" Grid.Column="0" FontSize="25" TextColor="White"  BackgroundColor="#0000ff" Grid.ColumnSpan="5"/>
-        <Label x:Name="Spanish_title" Text="Spanish" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="6" Grid.Column="0" FontSize="25" TextColor="Red" BackgroundColor="#FFF000"  Grid.ColumnSpan="5" />
-        <Label x:Name="French_title" Text="French" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="9" Grid.Column="0" FontSize="25" TextColor="White" BackgroundColor="#ff0000" Grid.ColumnSpan="5"/>
-        <Label x:Name="English"  Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpace="5"/>
-        <Label x:Name="Spanish"  Grid.Row="7" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpace="5"/>
-        <Label x:Name="French"  Grid.Row="10" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpace="5"/>
-        <Button x:Name="CameraButton" Text="Take Photo" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="5"  Clicked="Handle_Clicked" />
+        <Label x:Name="English_title" Text="English" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="3" Grid.Column="0" FontSize="25" TextColor="Black"  BackgroundColor="#f6e9cb" Grid.ColumnSpan="5"/>
+        <Label x:Name="Spanish_title" Text="Spanish" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="6" Grid.Column="0" FontSize="25" TextColor="Black" BackgroundColor="#f6e9cb"  Grid.ColumnSpan="5" />
+        <Label x:Name="French_title" Text="French" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="9" Grid.Column="0" FontSize="25" TextColor="Black" BackgroundColor="#f6e9cb" Grid.ColumnSpan="5"/>
+        <Label x:Name="English"  Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
+        <Label x:Name="Spanish"  Grid.Row="7" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
+        <Label x:Name="French"  Grid.Row="10" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
+        <Button x:Name="CameraButton" Text="Take Photo" TextColor="White" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="5"  Clicked="Handle_Clicked" />
     </Grid>
         </StackLayout>
     </ContentPage.Content>
