@@ -189,7 +189,7 @@ namespace CameraSample.iOS
                 else{
                     Spanish.Text = content;
                 }
-                 //return content;
+                c++;                 //return content;
                 //return result;             }
          } 
     }
