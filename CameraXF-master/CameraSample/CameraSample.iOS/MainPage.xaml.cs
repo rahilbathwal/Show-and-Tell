@@ -109,19 +109,22 @@ namespace CameraSample.iOS
                             {
                                 if (json[i + 4].Equals('"'))
                                 {
-                                    var count = 0;
-                                    var j = i + 5;
-                                    while (count < 2)
+                                    if (json[i + 5].Equals(':'))
                                     {
-                                        if (json[j].Equals('"'))
+                                        var count = 0;
+                                        var j = i + 6;
+                                        while (count < 2)
                                         {
-                                            count = count + 1;
+                                            if (json[j].Equals('"'))
+                                            {
+                                                count = count + 1;
+                                            }
+                                            else
+                                            {
+                                                sb.Append(json[j]);
+                                            }
+                                            j++;
                                         }
-                                        else
-                                        {
-                                            sb.Append(json[j]);
-                                        }
-                                        j++;
                                     }
                                 }
                             }
@@ -178,7 +181,7 @@ namespace CameraSample.iOS
             return sb.ToString();
         }
         static string host = "https://api.microsofttranslator.com";         static string path = "/V2/Http.svc/Translate";          // NOTE: Replace this example key with a valid subscription key.         static string key = "51bad81ee5334749b05724c9b94d1464";  
-        private async void TranslateText(string input)         {             HttpClient client = new HttpClient();             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);              List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>() {                 new KeyValuePair<string, string> (input, "fr-fr"),                 new KeyValuePair<string, string> (input, "sp-sp")             };             int c = 0;
+        private async void TranslateText(string input)         {             HttpClient client = new HttpClient();             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);              List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>() {                 new KeyValuePair<string, string> (input, "fr-fr"),                 new KeyValuePair<string, string> (input, "es-es")             };             int c = 0;
             English.Text = input;             foreach (KeyValuePair<string, string> i in list)             {
                                  string uri = host + path + "?to=" + i.Value + "&text=" + System.Net.WebUtility.UrlEncode(i.Key);                  HttpResponseMessage response = await client.GetAsync(uri);                  string result = await response.Content.ReadAsStringAsync();                 // NOTE: A successful response is returned in XML. You can extract the contents of the XML as follows.
                // XElement x = new XElement();                 var content = XElement.Parse(result).Value;
