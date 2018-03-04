@@ -2,8 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CameraSample.iOS.MainPage">
 	<ContentPage.Content>
         <StackLayout>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         <Label x:Name="Source" Grid.Row="2" />
-        <Button Clicked="Handle_Clicked" Text="Cog Svcs" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <Button x:Name="CameraButton" Text="Take Photo" Grid.Row="6" Grid.Column="0" Clicked="Handle_Clicked" />
+    </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

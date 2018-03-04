@@ -1,0 +1,904 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FFImageLoading</name>
+    </assembly>
+    <members>
+        <member name="T:FFImageLoading.Concurrency.IFixedSizePriorityQueue`2">
+            <summary>
+            A helper-interface only needed to make writing unit tests a bit easier (hence the 'internal' access modifier)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IFixedSizePriorityQueue`2.Resize(System.Int32)">
+            <summary>
+            Resize the queue so it can accept more nodes.  All currently enqueued nodes are remain.
+            Attempting to decrease the queue size to a size too small to hold the existing nodes results in undefined behavior
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.IFixedSizePriorityQueue`2.MaxSize">
+            <summary>
+            Returns the maximum number of items that can be enqueued at once in this queue.  Once you hit this number (ie. once Count == MaxSize),
+            attempting to enqueue another item will cause undefined behavior.
+            </summary>
+        </member>
+        <member name="T:FFImageLoading.Concurrency.IPriorityQueue`2">
+            <summary>
+            The IPriorityQueue interface.  This is mainly here for purists, and in case I decide to add more implementations later.
+            For speed purposes, it is actually recommended that you *don't* access the priority queue through this interface, since the JIT can
+            (theoretically?) optimize method calls from concrete-types slightly better.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.Enqueue(`0,`1)">
+            <summary>
+            Enqueue a node to the priority queue.  Higher values are placed in front. Ties are broken by first-in-first-out.
+            See implementation for how duplicates are handled.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.Dequeue">
+            <summary>
+            Removes the head of the queue (node with maximum priority; ties are broken by order of insertion), and returns it.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.Clear">
+            <summary>
+            Removes every node from the queue.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.Contains(`0)">
+            <summary>
+            Returns whether the given node is in the queue.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.Remove(`0)">
+            <summary>
+            Removes a node from the queue.  The node does not need to be the head of the queue.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.IPriorityQueue`2.UpdatePriority(`0,`1)">
+            <summary>
+            Call this method to change the priority of a node.
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.IPriorityQueue`2.First">
+            <summary>
+            Returns the head of the queue, without removing it (use Dequeue() for that).
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.IPriorityQueue`2.Count">
+            <summary>
+            Returns the number of nodes in the queue.
+            </summary>
+        </member>
+        <member name="T:FFImageLoading.Concurrency.SimplePriorityQueue`2">
+            <summary>
+            A simplified priority queue implementation.  Is stable, auto-resizes, and thread-safe, at the cost of being slightly slower than
+            FastPriorityQueue
+            </summary>
+            <typeparam name="TItem">The type to enqueue</typeparam>
+            <typeparam name="TPriority">The priority-type to use for nodes.  Must extend IComparable&lt;TPriority&gt;</typeparam>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.SimplePriorityQueue`2.Count">
+            <summary>
+            Returns the number of nodes in the queue.
+            O(1)
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.SimplePriorityQueue`2.First">
+            <summary>
+            Returns the head of the queue, without removing it (use Dequeue() for that).
+            Throws an exception when the queue is empty.
+            O(1)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.Clear">
+            <summary>
+            Removes every node from the queue.
+            O(n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.Contains(`0)">
+            <summary>
+            Returns whether the given item is in the queue.
+            O(n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.Dequeue">
+            <summary>
+            Removes the head of the queue (node with maximum priority; ties are broken by order of insertion), and returns it.
+            If queue is empty, throws an exception
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.TryDequeue(`0@)">
+            <summary>
+            Tries to remove the head of the queue
+            </summary>
+            <param name="item"></param>
+            <returns>If queue is empty <value>false</value>, else <value>true</value></returns>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.Enqueue(`0,`1)">
+            <summary>
+            Enqueue a node to the priority queue.  Higher values are placed in front. Ties are broken by first-in-first-out.
+            This queue automatically resizes itself, so there's no concern of the queue becoming 'full'.
+            Duplicates are allowed.
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.Remove(`0)">
+            <summary>
+            Removes an item from the queue.  The item does not need to be the head of the queue.
+            If the item is not in the queue, an exception is thrown.  If unsure, check Contains() first.
+            If multiple copies of the item are enqueued, only the first one is removed.
+            O(n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.UpdatePriority(`0,`1)">
+            <summary>
+            Call this method to change the priority of an item.
+            Calling this method on a item not in the queue will throw an exception.
+            If the item is enqueued multiple times, only the first one will be updated.
+            (If your requirements are complex enough that you need to enqueue the same item multiple times <i>and</i> be able
+            to update all of them, please wrap your items in a wrapper class so they can be distinguished).
+            O(n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.SimplePriorityQueue`2.GetExistingNode(`0)">
+            <summary>
+            Given an item of type T, returns the exist SimpleNode in the queue
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueueNode`1.Priority">
+            <summary>
+            The Priority to insert this node at.  Must be set BEFORE adding a node to the queue (ideally just once, in the node's constructor).
+            Should not be manually edited once the node has been enqueued - use queue.UpdatePriority() instead
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueueNode`1.QueueIndex">
+            <summary>
+            Represents the current position in the queue
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueueNode`1.InsertionIndex">
+            <summary>
+            Represents the order the node was inserted in
+            </summary>
+        </member>
+        <member name="T:FFImageLoading.Concurrency.GenericPriorityQueue`2">
+            <summary>
+            A copy of StablePriorityQueue which also has generic priority-type
+            </summary>
+            <typeparam name="TItem">The values in the queue.  Must extend the GenericPriorityQueue class</typeparam>
+            <typeparam name="TPriority">The priority-type.  Must extend IComparable&lt;TPriority&gt;</typeparam>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.#ctor(System.Int32)">
+            <summary>
+            Instantiate a new Priority Queue
+            </summary>
+            <param name="maxNodes">The max nodes ever allowed to be enqueued (going over this will cause undefined behavior)</param>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueue`2.Count">
+            <summary>
+            Returns the number of nodes in the queue.
+            O(1)
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueue`2.MaxSize">
+            <summary>
+            Returns the maximum number of items that can be enqueued at once in this queue.  Once you hit this number (ie. once Count == MaxSize),
+            attempting to enqueue another item will cause undefined behavior.  O(1)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Clear">
+            <summary>
+            Removes every node from the queue.
+            O(n) (So, don't do this often!)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Contains(`0)">
+            <summary>
+            Returns (in O(1)!) whether the given node is in the queue.  O(1)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Enqueue(`0,`1)">
+            <summary>
+            Enqueue a node to the priority queue.  Higher values are placed in front. Ties are broken by first-in-first-out.
+            If the queue is full, the result is undefined.
+            If the node is already enqueued, the result is undefined.
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.HasHigherPriority(`0,`0)">
+            <summary>
+            Returns true if 'higher' has higher priority than 'lower', false otherwise.
+            Note that calling HasHigherPriority(node, node) (ie. both arguments the same node) will return false
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Dequeue">
+            <summary>
+            Removes the head of the queue (node with maximum priority; ties are broken by order of insertion), and returns it.
+            If queue is empty, result is undefined
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Resize(System.Int32)">
+            <summary>
+            Resize the queue so it can accept more nodes.  All currently enqueued nodes are remain.
+            Attempting to decrease the queue size to a size too small to hold the existing nodes results in undefined behavior
+            O(n)
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Concurrency.GenericPriorityQueue`2.First">
+            <summary>
+            Returns the head of the queue, without removing it (use Dequeue() for that).
+            If the queue is empty, behavior is undefined.
+            O(1)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.UpdatePriority(`0,`1)">
+            <summary>
+            This method must be called on a node every time its priority changes while it is in the queue.
+            <b>Forgetting to call this method will result in a corrupted queue!</b>
+            Calling this method on a node not in the queue results in undefined behavior
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Concurrency.GenericPriorityQueue`2.Remove(`0)">
+            <summary>
+            Removes a node from the queue.  The node does not need to be the head of the queue.
+            If the node is not in the queue, the result is undefined.  If unsure, check Contains() first
+            O(log n)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.Helpers.Delay.DelayAsync(System.Int32)">
+            <summary>
+            More acurate delay implementation
+            </summary>
+            <returns>The delay.</returns>
+            <param name="miliseconds">Miliseconds.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromFile(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a file.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="filepath">Path to the file.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromEmbeddedResource(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a file.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="resourceUri">Uri to the resource.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromUrl(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Constructs a new TaskParameter to load an image from a URL.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="url">URL to the file</param>
+            <param name="cacheDuration">How long the file will be cached on disk</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromApplicationBundle(System.String)">
+            <summary>
+            Constructsa new TaskParameter to load an image from a file from application bundle.
+            </summary>
+            <param name="filepath">Path to the file.</param>
+            <returns>The new TaskParameter.</returns>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromCompiledResource(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a compiled drawable resource.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="resourceName">Name of the resource in drawable folder without extension</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromStream(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{System.IO.Stream}})">
+            <summary>
+            Constructs a new TaskParameter to load an image from a stream
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="stream">Stream.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FromString(System.String,FFImageLoading.Work.DataEncodingType)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a string.
+            </summary>
+            <returns>The string.</returns>
+            <param name="data">Data.</param>
+            <param name="dataEncoding">Data encoding.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Transform(FFImageLoading.Work.ITransformation)">
+            <summary>
+            Sets transformation for image loading task
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="transformation">Transformation.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Transform(System.Collections.Generic.IEnumerable{FFImageLoading.Work.ITransformation})">
+            <summary>
+            Sets transformations for image loading task
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="transformations">Transformations.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.LoadingPlaceholder(System.String,FFImageLoading.Work.ImageSource)">
+            <summary>
+            Defines the placeholder used while loading.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="path">Path to the file.</param>
+            <param name="source">Source for the path: local, web, assets</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.ErrorPlaceholder(System.String,FFImageLoading.Work.ImageSource)">
+            <summary>
+            Defines the placeholder used when an error occurs.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="filepath">Path to the file.</param>
+            <param name="source">Source for the path: local, web, assets</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.DownSample(System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Reduce memory usage by downsampling the image. Aspect ratio will be kept even if width/height values are incorrect.
+            Uses pixels units for width/height
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="width">Optional width parameter, if value is higher than zero it will try to downsample to this width while keeping aspect ratio.</param>
+            <param name="height">Optional height parameter, if value is higher than zero it will try to downsample to this height while keeping aspect ratio.</param>
+            <param name="allowUpscale">Whether to upscale the image if it is smaller than passed dimensions or not; if <c>null</c> the value is taken from Configuration (<c>false</c> by default)</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.DownSampleInDip(System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Reduce memory usage by downsampling the image. Aspect ratio will be kept even if width/height values are incorrect.
+            Uses device independent points units for width/height
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="width">Optional width parameter, if value is higher than zero it will try to downsample to this width while keeping aspect ratio.</param>
+            <param name="height">Optional height parameter, if value is higher than zero it will try to downsample to this height while keeping aspect ratio.</param>
+            <param name="allowUpscale">Whether to upscale the image if it is smaller than passed dimensions or not; if <c>null</c> the value is taken from Configuration (<c>false</c> by default)</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.DownSampleMode(FFImageLoading.Work.InterpolationMode)">
+            <summary>
+            Set mode for downsampling. Speed-wise: nearest neighbour > linear > cubic.\
+            Default: bilinear
+            On Android it's always ignored as Android uses bitmap insamplesize downsampling (bilinear)
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="mode">Optional mode parameter, if not set, defaults to linear.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithPriority(FFImageLoading.Work.LoadingPriority)">
+            <summary>
+            Defines the loading priority, the default is LoadingPriority.Normal
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="priority">Priority.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithCustomDataResolver(FFImageLoading.Work.IDataResolver)">
+            <summary>
+            Forces task to use custom resolver.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="resolver">Resolver.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithCustomLoadingPlaceholderDataResolver(FFImageLoading.Work.IDataResolver)">
+            <summary>
+            Forces task to use custom resolver for loading placeholder.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="resolver">Resolver.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithCustomErrorPlaceholderDataResolver(FFImageLoading.Work.IDataResolver)">
+            <summary>
+            Forces task to use custom resolver for error placeholder.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="resolver">Resolver.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithPriority(System.Int32)">
+            <summary>
+            Defines the loading priority, the default is 0 (LoadingPriority.Normal)
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="priority">Priority.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.WithCache(FFImageLoading.Cache.CacheType)">
+            <summary>
+            Select cache types used for image loading task.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="cacheType">Cache type.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.TransparencyChannel(System.Boolean)">
+            <summary>
+            Indicates if the transparency channel should be loaded. By default this value comes from ImageService.Instance.Config.LoadWithTransparencyChannel.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="loadTransparencyChannel">If set to <c>true</c> force loading alpha channel otherwise force not loading it.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.BitmapOptimizations(System.Boolean)">
+            <summary>
+            Enables / disables bitmap optimizations
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="enabled">If set to <c>true</c> enabled.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FadeAnimation(System.Boolean,System.Nullable{System.Boolean},System.Nullable{System.Int32})">
+            <summary>
+            Indicates if the fade animation should be enabled.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="enabled">If set to <c>true</c> enabled.</param>
+            <param name = "enabledForCachedImages">Enables animation for local or cached images</param>
+            <param name = "duration">Fade animation duration in ms</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.TransformPlaceholders(System.Boolean)">
+            <summary>
+            Indicates if transforms should be applied to placeholders.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="enabled">If set to <c>true</c> enabled.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Retry(System.Int32,System.Int32)">
+            <summary>
+            If image loading fails automatically retry it a number of times, with a specific delay.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="retryCount">Number of retries</param>
+            <param name="millisecondDelay">Delay in milliseconds between each trial</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.CacheKey(System.String)">
+            <summary>
+            Uses this cache key, in addition with the real key, to cache into memory/disk
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="customCacheKey">Custom cache key.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Delay(System.Int32)">
+            <summary>
+            Delay the task by the specified milliseconds.
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="milliseconds">Milliseconds to wait prior to start the task.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Success(System.Action)">
+            <summary>
+            If image loading succeded this callback is called
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="action">Action to invoke when loading succeded.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.Success(System.Action{FFImageLoading.Work.ImageInformation,FFImageLoading.Work.LoadingResult})">
+            <summary>
+            If image loading succeded this callback is called
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="action">Action to invoke when loading succeded. Argument is the size of the image loaded.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:FFImageLoading.Work.TaskParameter.Error(System.Action{System.Exception})" -->
+        <!-- Badly formed XML comment ignored for member "M:FFImageLoading.Work.TaskParameter.Finish(System.Action{FFImageLoading.Work.IScheduledWork})" -->
+        <member name="M:FFImageLoading.Work.TaskParameter.DownloadStarted(System.Action{FFImageLoading.DownloadInformation})">
+            <summary>
+            If image starts downloading from Internet this callback is called
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="action">Action.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.DownloadProgress(System.Action{FFImageLoading.DownloadProgress})">
+            <summary>
+            This callback can be used for reading download progress
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="action">Action.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.TaskParameter.FileWriteFinished(System.Action{FFImageLoading.FileWriteInfo})">
+            <summary>
+            Called after file is succesfully written to the disk
+            </summary>
+            <returns>The TaskParameter instance for chaining the call.</returns>
+            <param name="action">Action.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.IWorkScheduler.Cancel(System.Func{FFImageLoading.Work.IImageLoaderTask,System.Boolean})">
+            <summary>
+            Cancels tasks that match predicate.
+            </summary>
+            <param name="predicate">Predicate for finding relevant tasks to cancel.</param>
+        </member>
+        <member name="M:FFImageLoading.Work.IWorkScheduler.LoadImage(FFImageLoading.Work.IImageLoaderTask)">
+            <summary>
+            Schedules the image loading. If image is found in cache then it returns it, otherwise it loads it.
+            </summary>
+            <param name="key">Key for cache lookup.</param>
+            <param name="task">Image loading task.</param>
+        </member>
+        <member name="T:FFImageLoading.Config.Configuration">
+            <summary>
+            Configuration.
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.HttpClient">
+            <summary>
+            Gets or sets the http client used for web requests.
+            </summary>
+            <value>The http client used for web requests.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.Scheduler">
+            <summary>
+            Gets or sets the scheduler used to organize/schedule image loading tasks.
+            </summary>
+            <value>The scheduler used to organize/schedule image loading tasks.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.Logger">
+            <summary>
+            Gets or sets the logger used to receive debug/error messages.
+            </summary>
+            <value>The logger.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DiskCache">
+            <summary>
+            Gets or sets the disk cache.
+            </summary>
+            <value>The disk cache.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DiskCachePath">
+            <summary>
+            Gets or sets the disk cache path.
+            </summary>
+            <value>The disk cache path.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DownloadCache">
+            <summary>
+            Gets or sets the download cache. Download cache is responsible for retrieving data from the web, or taking from the disk cache.
+            </summary>
+            <value>The download cache.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DataResolverFactory">
+            <summary>
+            Gets or sets the image data resolver factory.
+            </summary>
+            <value>The data resolver factory.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.MD5Helper">
+            <summary>
+            Gets or sets the MD5 helper.
+            </summary>
+            <value>The MD5 helper.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.MainThreadDispatcher">
+            <summary>
+            Gets or sets the main thread dispatcher.
+            </summary>
+            <value>The main thread dispatcher.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.LoadWithTransparencyChannel">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:FFImageLoading.Config.Configuration"/> loads images with transparency channel. On Android we save 50% of the memory without transparency since we use 2 bytes per pixel instead of 4.
+            </summary>
+            <value><c>true</c> if FFIMageLoading loads images with transparency; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.BitmapOptimizations">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:FFImageLoading.Config.Configuration"/> bitmap
+            memory optimizations.
+            </summary>
+            <value><c>true</c> if bitmap memory optimizations; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.StreamChecksumsAsKeys">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:FFImageLoading.Config.Configuration"/> stream
+            checksums as keys.
+            </summary>
+            <value><c>true</c> if stream checksums as keys; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.FadeAnimationEnabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:FFImageLoading.Config.Configuration"/> fade animation enabled.
+            </summary>
+            <value><c>true</c> if fade animation enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.FadeAnimationForCachedImages">
+            <summary>
+            Gets or sets a value indicating wheter fade animation for
+            cached or local images should be enabled.
+            </summary>
+            <value><c>true</c> if fade animation for cached or local images; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.FadeAnimationDuration">
+            <summary>
+            Gets or sets the default duration of the fade animation in ms.
+            </summary>
+            <value>The duration of the fade animation.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.TransformPlaceholders">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:FFImageLoading.Config.Configuration"/> transforming place is enabled.
+            </summary>
+            <value><c>true</c> if transform should be applied to placeholder images; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DownsampleInterpolationMode">
+            <summary>
+            Gets or sets default downsample interpolation mode.
+            </summary>
+            <value>downsample interpolation mode</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.AllowUpscale">
+            <summary>
+            Gets or sets a value that determines whether upscaling should be used in <see cref="M:FFImageLoading.Work.TaskParameter.DownSample(System.Int32,System.Int32,System.Nullable{System.Boolean})"/>/<see cref="M:FFImageLoading.Work.TaskParameter.DownSampleInDip(System.Int32,System.Int32,System.Nullable{System.Boolean})"/> functions if the image is smaller than passed dimensions
+            </summary>
+            <value><c>true</c> if upscaling is allowed; otherwise, <c>false</c></value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.HttpHeadersTimeout">
+            <summary>
+            Gets or sets the maximum time in seconds to wait to receive HTTP headers before the HTTP request is cancelled.
+            </summary>
+            <value>The http connect timeout.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.HttpReadTimeout">
+            <summary>
+            Gets or sets the maximum time in seconds to wait before the HTTP request is cancelled.
+            </summary>
+            <value>The http read timeout.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.HttpReadBufferSize">
+            <summary>
+            Gets or sets the size of the http read buffer.
+            </summary>
+            <value>The size of the http read buffer.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.MaxMemoryCacheSize">
+            <summary>
+            Gets or sets the maximum size of the memory cache in bytes.
+            </summary>
+            <value>The maximum size of the memory cache in bytes.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DelayInMs">
+            <summary>
+            Milliseconds to wait prior to start any task.
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.VerbosePerformanceLogging">
+            <summary>
+            Enables / disables verbose performance logging.
+            WARNING! It will downgrade image loading performance, disable it for release builds!
+            </summary>
+            <value>The verbose performance logging.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.VerboseMemoryCacheLogging">
+            <summary>
+            Enables / disables verbose memory cache logging.
+            WARNING! It will downgrade image loading performance, disable it for release builds!
+            </summary>
+            <value>The verbose memory cache logging.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.VerboseLoadingCancelledLogging">
+            <summary>
+            Enables / disables verbose image loading cancelled logging.
+            WARNING! It will downgrade image loading performance, disable it for release builds!
+            </summary>
+            <value>The verbose image loading cancelled logging.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.VerboseLogging">
+            <summary>
+            Enables / disables  verbose logging.
+            IMPORTANT! If it's disabled are other verbose logging options are disabled too
+            </summary>
+            <value>The verbose logging.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.SchedulerMaxParallelTasks">
+            <summary>
+            Gets or sets the scheduler max parallel tasks.
+            Default is: Math.Max(2, (int)(Environment.ProcessorCount / 2d))
+            </summary>
+            <value>The scheduler max parallel tasks.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.SchedulerMaxParallelTasksFactory">
+            <summary>
+            Gets or sets the scheduler max parallel tasks factory.
+            If null SchedulerMaxParallelTasks property is used
+            </summary>
+            <value>The scheduler max parallel tasks factory.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.DiskCacheDuration">
+            <summary>
+            Gets or sets the default duration of the disk cache entries.
+            </summary>
+            <value>The duration of the cache.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.ExecuteCallbacksOnUIThread">
+            <summary>
+            Gets or sets a value indicating whether callbacs (OnFinish, OnSuccess, etc)
+            should execute on UI thread
+            </summary>
+            <value><c>true</c> if execute callbacks on UIT hread; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.AnimateGifs">
+            <summary>
+            Gets or sets a value indicating whether image loader should animate gifs.
+            </summary>
+            <value><c>true</c> if animate gifs; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:FFImageLoading.Config.Configuration.ClearMemoryCacheOnOutOfMemory">
+            <summary>
+            Gets or sets a value indicating whether clear
+            memory cache on out of memory.
+            </summary>
+            <value><c>true</c> if clear memory cache on out of memory; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:FFImageLoading.Cache.IDiskCache.AddToSavingQueueIfNotExistsAsync(System.String,System.Byte[],System.TimeSpan,System.Action)">
+            <summary>
+            Adds the file to cache and file saving queue if it does not exists.
+            </summary>
+            <param name="key">Key to store/retrieve the file.</param>
+            <param name="bytes">File data in bytes.</param>
+            <param name="duration">Specifies how long an item should remain in the cache.</param>
+        </member>
+        <member name="T:FFImageLoading.IImageService">
+            <summary>
+            FFImageLoading by Daniel Luberda
+            </summary>
+        </member>
+        <member name="P:FFImageLoading.IImageService.Config">
+            <summary>
+            Gets FFImageLoading configuration
+            </summary>
+            <value>The configuration used by FFImageLoading.</value>
+        </member>
+        <member name="M:FFImageLoading.IImageService.Initialize">
+            <summary>
+            Initializes FFImageLoading with a default Configuration.
+            Also forces to run disk cache cleaning routines (avoiding delay for first image loading tasks)
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.IImageService.Initialize(FFImageLoading.Config.Configuration)">
+            <summary>
+            Initializes FFImageLoading with a given Configuration. It allows to configure and override most of it.
+            Also forces to run disk cache cleaning routines (avoiding delay for first image loading tasks)
+            </summary>
+            <param name="configuration">Configuration.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadFile(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a file.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="filepath">Path to the file.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadUrl(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Constructs a new TaskParameter to load an image from a URL.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="url">URL to the file</param>
+            <param name="cacheDuration">How long the file will be cached on disk</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadString(System.String,FFImageLoading.Work.DataEncodingType)">
+            <summary>
+            Loads the string.
+            </summary>
+            <returns>The string.</returns>
+            <param name="data">Data.</param>
+            <param name="encoding">Encoding.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadBase64String(System.String)">
+            <summary>
+            Loads the base64 string.
+            </summary>
+            <returns>The base64 string.</returns>
+            <param name="data">Data.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadFileFromApplicationBundle(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a file from application bundle.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="filepath">Path to the file.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadCompiledResource(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a compiled drawable resource.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="resourceName">Name of the resource in drawable folder without extension</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadEmbeddedResource(System.String)">
+            <summary>
+            Constructs a new TaskParameter to load an image from a compiled drawable resource.
+            eg. resource://YourProject.Resource.Resource.png
+            eg. resource://YourProject.Resource.Resource.png?assembly=[FULL_ASSEMBLY_NAME]
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="resourceUri">Uri of the resource</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadStream(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{System.IO.Stream}})">
+            <summary>
+            Constructs a new TaskParameter to load an image from a Stream.
+            </summary>
+            <returns>The new TaskParameter.</returns>
+            <param name="resourceName">A function that allows a CancellationToken and returns the Stream to use. This function will be invoked by LoadStream().</param>
+        </member>
+        <member name="P:FFImageLoading.IImageService.ExitTasksEarly">
+            <summary>
+            Gets a value indicating whether ImageService will exit tasks earlier
+            </summary>
+            <value><c>true</c> if it should exit tasks early; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:FFImageLoading.IImageService.SetExitTasksEarly(System.Boolean)">
+            <summary>
+            Sets a value indicating whether ImageService will exit tasks earlier
+            </summary>
+            <param name="exitTasksEarly">If set to <c>true</c> exit tasks early.</param>
+        </member>
+        <member name="P:FFImageLoading.IImageService.PauseWork">
+            <summary>
+            Gets a value indicating whether ImageService will pause tasks execution
+            </summary>
+            <value><c>true</c> if pause work; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:FFImageLoading.IImageService.SetPauseWork(System.Boolean)">
+            <summary>
+            Sets a value indicating if all loading work should be paused (silently canceled).
+            </summary>
+            <param name="pauseWork">If set to <c>true</c> pause/cancel work.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.CancelWorkFor(FFImageLoading.Work.IImageLoaderTask)">
+            <summary>
+            Cancel any loading work for the given ImageView
+            </summary>
+            <param name="task">Image loading task to cancel.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.RemovePendingTask(FFImageLoading.Work.IImageLoaderTask)">
+            <summary>
+            Removes a pending image loading task from the work queue.
+            </summary>
+            <param name="task">Image loading task to remove.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.LoadImage(FFImageLoading.Work.IImageLoaderTask)">
+            <summary>
+            Queue an image loading task.
+            </summary>
+            <param name="task">Image loading task.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.InvalidateCacheAsync(FFImageLoading.Cache.CacheType)">
+            <summary>
+            Invalidates selected caches.
+            </summary>
+            <returns>An awaitable task.</returns>
+            <param name="cacheType">Memory cache, Disk cache or both</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.InvalidateMemoryCache">
+            <summary>
+            Invalidates the memory cache.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.IImageService.InvalidateDiskCacheAsync">
+            <summary>
+            Invalidates the disk cache.
+            </summary>
+        </member>
+        <member name="M:FFImageLoading.IImageService.InvalidateCacheEntryAsync(System.String,FFImageLoading.Cache.CacheType,System.Boolean)">
+            <summary>
+            Invalidates the cache for given key.
+            </summary>
+            <returns>The async.</returns>
+            <param name="key">Concerns images with this key.</param>
+            <param name="cacheType">Memory cache, Disk cache or both</param>
+            <param name="removeSimilar">If similar keys should be removed, ie: typically keys with extra transformations</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.Cancel(System.Func{FFImageLoading.Work.IImageLoaderTask,System.Boolean})">
+            <summary>
+            Cancels tasks that match predicate.
+            </summary>
+            <param name="predicate">Predicate for finding relevant tasks to cancel.</param>
+        </member>
+        <member name="M:FFImageLoading.IImageService.Cancel(System.Func{FFImageLoading.Work.TaskParameter,System.Boolean})">
+            <summary>
+            Cancels tasks that match predicate.
+            </summary>
+            <param name="predicate">Predicate for finding relevant tasks to cancel.</param>
+        </member>
+        <member name="T:FFImageLoading.Views.ICachedImageView">
+            <summary>
+            This interface is used to unify view properties / methods across all platform specific implementations
+            </summary>
+        </member>
+    </members>
+</doc>

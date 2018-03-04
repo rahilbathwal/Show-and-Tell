@@ -21,7 +21,39 @@
 	/Users/Rahil/Desktop/hacktech/language_learning/language_learning/obj/iPhoneSimulator/Debug/device-builds/iphone10.4-11.2/mtouch-symbols.list \
 	--dsym=no \
 	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/BTProgressHUD.1.2.0.6/lib/Xamarin.iOS10/BTProgressHUD.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.2.2.25/lib/Xamarin.iOS10/FFImageLoading.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Forms.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Forms.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Forms.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Forms.Touch.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Platform.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Transformations.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Transformations.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Microsoft.CSharp.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/modernhttpclient.2.4.2/lib/Xamarin.iOS10/ModernHttpClient.dll \
+	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Newtonsoft.Json.10.0.3/lib/netstandard1.3/Newtonsoft.Json.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PCLCrypto.2.0.147/lib/xamarinios10/PCLCrypto.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.BCrypt.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.Kernel32.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.NCrypt.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.Windows.Core.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Connectivity.3.0.3/lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Connectivity.3.0.3/lib/Xamarin.iOS10/Plugin.Connectivity.dll \
 	-r \
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Media.3.1.3/lib/Xamarin.iOS10/Plugin.Media.Abstractions.dll \
 	-r \
@@ -31,11 +63,41 @@
 	-r \
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Plugin.Permissions.2.2.1/lib/Xamarin.iOS10/Plugin.Permissions.dll \
 	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugins.Settings.3.1.1/lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugins.Settings.3.1.1/lib/Xamarin.iOS10/Plugin.Settings.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PropertyChanged.Fody.2.1.4/lib/netstandard1.0/PropertyChanged.dll \
+	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
 	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.IO.Compression.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Json.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Net.Http.dll \
+	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/TTGSnackbar.1.3.4/lib/Xamarin.iOS10/TTGSnackbar.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Validation.2.2.8/lib/dotnet/Validation.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/WebP.Touch.1.0.4/lib/Xamarin.iOS10/WebP.Touch.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Auth.1.5.0.3/lib/Xamarin.iOS10/Xamarin.Auth.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Auth.XamarinForms.1.5.0.3/lib/Xamarin.iOS10/Xamarin.Auth.XamarinForms.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Core.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Platform.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
 	-r \
@@ -313,6 +375,36 @@
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Facades/System.Xml.Xsl.Primitives.dll \
 	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/BTProgressHUD.1.2.0.6/lib/Xamarin.iOS10/BTProgressHUD.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.2.2.25/lib/Xamarin.iOS10/FFImageLoading.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Forms.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Forms.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Forms.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Forms.Touch.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Platform.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.FFImageLoading.Transformations.2.2.25/lib/Xamarin.iOS10/FFImageLoading.Transformations.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/modernhttpclient.2.4.2/lib/Xamarin.iOS10/ModernHttpClient.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Newtonsoft.Json.10.0.3/lib/netstandard1.3/Newtonsoft.Json.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PCLCrypto.2.0.147/lib/xamarinios10/PCLCrypto.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.BCrypt.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.Kernel32.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.NCrypt.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PInvoke.Windows.Core.0.3.2/lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Connectivity.3.0.3/lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Connectivity.3.0.3/lib/Xamarin.iOS10/Plugin.Connectivity.dll \
+	-r \
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Media.3.1.3/lib/Xamarin.iOS10/Plugin.Media.Abstractions.dll \
 	-r \
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugin.Media.3.1.3/lib/Xamarin.iOS10/Plugin.Media.dll \
@@ -320,6 +412,98 @@
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Plugin.Permissions.2.2.1/lib/Xamarin.iOS10/Plugin.Permissions.Abstractions.dll \
 	-r \
 	/Users/Rahil/Desktop/hacktech/language_learning/packages/Plugin.Permissions.2.2.1/lib/Xamarin.iOS10/Plugin.Permissions.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugins.Settings.3.1.1/lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xam.Plugins.Settings.3.1.1/lib/Xamarin.iOS10/Plugin.Settings.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/PropertyChanged.Fody.2.1.4/lib/netstandard1.0/PropertyChanged.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/TTGSnackbar.1.3.4/lib/Xamarin.iOS10/TTGSnackbar.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Validation.2.2.8/lib/dotnet/Validation.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/WebP.Touch.1.0.4/lib/Xamarin.iOS10/WebP.Touch.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Auth.1.5.0.3/lib/Xamarin.iOS10/Xamarin.Auth.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Auth.XamarinForms.1.5.0.3/lib/Xamarin.iOS10/Xamarin.Auth.XamarinForms.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Core.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Platform.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ar/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ca/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/cs/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/da/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/de/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/el/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/es/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/fi/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/fr/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/he/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/hi/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/hr/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/hu/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/id/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/it/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ja/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ko/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ms/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/nb/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/nl/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/pl/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/pt/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/pt-BR/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ro/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/ru/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/sk/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/sv/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/th/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/tr/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/uk/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/vi/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/zh-HK/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/zh-Hans/Xamarin.Forms.Platform.iOS.resources.dll \
+	-r \
+	/Users/Rahil/Desktop/hacktech/language_learning/packages/Xamarin.Forms.2.5.0.91635/lib/Xamarin.iOS10/zh-Hant/Xamarin.Forms.Platform.iOS.resources.dll \
 	--target-framework \
 	'Xamarin.iOS,v1.0' \
 	/Users/Rahil/Desktop/hacktech/language_learning/language_learning/bin/iPhoneSimulator/Debug/language_learning.exe \

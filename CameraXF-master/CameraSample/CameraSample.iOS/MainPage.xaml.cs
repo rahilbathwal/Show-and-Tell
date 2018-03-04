@@ -26,7 +26,8 @@ namespace CameraSample.iOS
             var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 Directory = "Language",
-                Name = "Object"
+                Name = "Object",
+                CompressionQuality = 65    
             });
             if (photo != null)
             {
@@ -52,7 +53,7 @@ namespace CameraSample.iOS
             HttpResponseMessage response;
 
             // Request body. Posts a locally stored JPEG image.
-            byte[] byteData = null; // TODO GetImageAsByteArray(imageFilePath);
+            byte[] byteData = GetImageAsByteArray(imageFilePath);
 
             using (ByteArrayContent content = new ByteArrayContent(byteData))
             {
@@ -67,6 +68,7 @@ namespace CameraSample.iOS
                 string contentString = await response.Content.ReadAsStringAsync();
 
                 // Display the JSON response.
+                //Source.Text = contentString;
 
                 Source.Text = JsonPrettyPrint(contentString);
 
@@ -88,14 +90,43 @@ namespace CameraSample.iOS
 
             json = json.Replace(Environment.NewLine, "").Replace("\t", "");
 
-            string INDENT_STRING = "    ";
+            /*string INDENT_STRING = "    ";
             var indent = 0;
-            var quoted = false;
+            var quoted = false;*/
             var sb = new StringBuilder();
             for (var i = 0; i < json.Length; i++)
             {
                 var ch = json[i];
-                switch (ch)
+                if (ch.Equals('t'))
+                {
+                    if (json[i + 1].Equals('e'))
+                    {
+                        if (json[i + 2].Equals('x'))
+                        {
+                            if (json[i + 3].Equals('t'))
+                            {
+                                if (json[i + 4].Equals('"'))
+                                {
+                                    var count = 0;
+                                    var j = i + 5;
+                                    while (count < 2)
+                                    {
+                                        if (json[j].Equals('"'))
+                                        {
+                                            count = count + 1;
+                                        }
+                                        else
+                                        {
+                                            sb.Append(json[j]);
+                                        }
+                                        j++;
+                                    }
+                                }
+                            }
+                        }
+                    }    
+                }        
+                /*switch (ch)
                 {
                     case '{':
                     case '[':
@@ -140,7 +171,7 @@ namespace CameraSample.iOS
                     default:
                         sb.Append(ch);
                         break;
-                }
+                }*/
             }
             return sb.ToString();
         }

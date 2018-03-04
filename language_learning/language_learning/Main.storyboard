@@ -28,6 +28,9 @@
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="Picture" destination="197" id="name-outlet-197"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

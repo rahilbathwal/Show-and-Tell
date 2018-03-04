@@ -2,10 +2,6 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="language_learning/Main.storyboard">
     <Files>
       <File FileName="language_learning/Main.storyboard" />
-      <File FileName="language_learning/Main.cs" Line="12" Column="1" />
-      <File FileName="../../cognitive-services-xamarin-forms-computer-vision-search-master/VisualSearchApp/OcrSelectPage.xaml" Line="21" Column="37" />
-      <File FileName="language_learning/ViewController.cs" Line="1" Column="14" />
-      <File FileName="language_learning/Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
