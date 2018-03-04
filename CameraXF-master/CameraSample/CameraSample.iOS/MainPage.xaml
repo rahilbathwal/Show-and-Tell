@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CameraSample.iOS.MainPage" BackgroundColor="#53687e">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout>
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -22,13 +22,13 @@
             <ColumnDefinition Width="120" />
 
         </Grid.ColumnDefinitions>
-
+        <Image Source="Banner.png" Aspect="Fill" Grid.Row = "1" Grid.RowSpan="2"  Grid.Column="0" Grid.ColumnSpan="5" Margin="-16"/>
         <Label x:Name="English_title" Text="English" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="3" Grid.Column="0" FontSize="25" TextColor="Black"  BackgroundColor="#f6e9cb" Grid.ColumnSpan="5"/>
         <Label x:Name="Spanish_title" Text="Spanish" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="6" Grid.Column="0" FontSize="25" TextColor="Black" BackgroundColor="#f6e9cb"  Grid.ColumnSpan="5" />
         <Label x:Name="French_title" Text="French" FontFamily="Avenir" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="9" Grid.Column="0" FontSize="25" TextColor="Black" BackgroundColor="#f6e9cb" Grid.ColumnSpan="5"/>
-        <Label x:Name="English"  Text="Take a photo to identify and translate an object" Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
-        <Label x:Name="Spanish"  Text="Prenez une photo pur identifier et traduire un objet" Grid.Row="7" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
-        <Label x:Name="French"  Text="Saque una foto para identificar y traducir un objeto" Grid.Row="10" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5"/>
+        <Label x:Name="English"  Text="Take a photo to identify and translate an object" Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5" TextColor="Black"/>
+        <Label x:Name="Spanish"  Text="Prenez une photo pur identifier et traduire un objet" Grid.Row="7" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5" TextColor="Black"/>
+        <Label x:Name="French"  Text="Saque una foto para identificar y traducir un objeto" Grid.Row="10" Grid.Column="0" HorizontalTextAlignment="Center" Grid.ColumnSpan="5" TextColor="Black"/>
         <Button x:Name="CameraButton" FontFamily="Avenir" FontSize="17" Text="Take Photo" TextColor="White" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="5"  Clicked="Handle_Clicked" />
     </Grid>
         </StackLayout>
