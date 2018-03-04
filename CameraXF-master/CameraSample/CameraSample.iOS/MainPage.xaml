@@ -5,11 +5,21 @@
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="120" />
 
-        <Label x:Name="Source" Grid.Row="2" />
-        <Button x:Name="CameraButton" Text="Take Photo" Grid.Row="6" Grid.Column="0" Clicked="Handle_Clicked" />
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="English_title" Text="English" Grid.Row="2" Grid.Column="1" FontSize="25" TextColor="White"  BackgroundColor="#0000ff" WidthRequest="100"/>
+        <Label x:Name="Spanish_title" Text="Spanish" Grid.Row="5" Grid.Column="1" FontSize="25" TextColor="Red" BackgroundColor="#FFF000" Margin="-70, -5, 20, -10"/>
+        <Label x:Name="French_title" Text="French" Grid.Row="8" Grid.Column="1" FontSize="25" TextColor="White" BackgroundColor="#ff0000"/>
+        <Label x:Name="English"  Grid.Row="3" />
+        <Label x:Name="Spanish"  Grid.Row="6" />
+        <Label x:Name="French"  Grid.Row="9" />
+        <Button x:Name="CameraButton" Text="Take Photo" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3"  Clicked="Handle_Clicked" />
     </Grid>
         </StackLayout>
     </ContentPage.Content>
