@@ -124,6 +124,7 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\Banner.png" />
     <BundleResource Include="Resources\iTunesArtwork%401x.png" />
+    <BundleResource Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -181,13 +182,13 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
     <ImageAsset Include="Assets.xcassets\.DS_Store" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-60%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-76.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-76%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-Small.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-Small%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-Small-40.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.targets')" />
